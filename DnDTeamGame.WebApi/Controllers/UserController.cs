@@ -28,19 +28,25 @@ namespace DnDTeamGame.WebApi.Controllers
         [HttpPost("Register")]
         public async Task<IActionResult> RegisterUser([FromBody] UserRegister model)
         {
-            if (!ModelState.IsValid)
+           try
             {
-                return BadRequest(ModelState);
+                if (!ModelState.IsValid)
+                {
+                    return BadRequest(ModelState);
+                }
+                var registerResult = await _userService.RegisterUserAsync(model);
+                if (registerResult)
+                {
+                    TextResponse response = new("User was registered.");
+                    return Ok(response);
+                }
+                return BadRequest(new TextResponse("User could not be registered."));
             }
-
-            var registerResult = await _userService.RegisterUserAsync(model);
-            if (registerResult)
+            catch (Exception ex)
             {
-                TextResponse response = new("User was registered.");
-                return Ok(response);
+                Console.WriteLine(ex.Message);
+                return BadRequest(new TextResponse("User could not be registered."));
             }
-
-            return BadRequest(new TextResponse("User could not be registered."));
         }
 
         // [Authorize]
