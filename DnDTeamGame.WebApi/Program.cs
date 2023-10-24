@@ -112,11 +112,10 @@ builder.Services.AddAutoMapper(typeof(HairColorAutoMapProfile));
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
+
     app.UseSwagger();
     app.UseSwaggerUI();
-}
+
 
 app.UseHttpsRedirection();
 
