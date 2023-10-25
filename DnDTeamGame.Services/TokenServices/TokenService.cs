@@ -57,7 +57,7 @@ namespace DnDTeamGame.Services.TokenServices
 
             TokenResponse response = new TokenResponse()
             {
-                UserId = entity.UserId,
+                Id = entity.Id,
                 Token = tokenHandler.WriteToken(token),
                 IssuedAt = token.ValidFrom,
                 Expires = token.ValidTo
