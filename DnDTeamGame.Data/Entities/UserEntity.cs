@@ -5,6 +5,9 @@ namespace DnDTeamGame.Data.Entities
 {
     public class UserEntity : IdentityUser<int>
     {
+        [Key]
+        public int UserId { get; set; }
+        
         [MaxLength(50)]
         public string? FirstName {get; set;}
 
