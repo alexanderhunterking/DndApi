@@ -62,7 +62,7 @@ namespace DnDTeamGame.WebApi.Controllers
 
             return Ok(detail);
         }
-
+        [Authorize]
         [HttpDelete("{userId:int}")]
         public async Task<IActionResult> DeleteUser([FromRoute] int userId)
         {
