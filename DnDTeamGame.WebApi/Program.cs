@@ -22,9 +22,21 @@ using DnDTeamGame.Services.HairStyleServices;
 using DnDTeamGame.Services.BodyTypeServices;
 using DnDTeamGame.Models.MapProfile;
 
+var  MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(name: MyAllowSpecificOrigins,
+                      policy  =>
+                      {
+                          policy.WithOrigins("http://example.com",
+                                              "http://www.contoso.com");
+                      });
+});
+
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(connectionString));
 builder.Services.AddDefaultIdentity<UserEntity>(options =>
@@ -116,6 +128,7 @@ var app = builder.Build();
     app.UseSwagger();
     app.UseSwaggerUI();
 
+app.UseCors(MyAllowSpecificOrigins);
 
 app.UseHttpsRedirection();
 
