@@ -7,7 +7,7 @@ using DnDTeamGame.Models.MapModels;
 
 namespace DnDTeamGame.WebApi.Controllers
 {
-    
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class MapController : ControllerBase

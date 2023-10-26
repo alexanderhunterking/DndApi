@@ -6,11 +6,12 @@ using System.Threading.Tasks;
 using DnDTeamGame.Models.Responses;
 using DnDTeamGame.Models.VehicleModels;
 using DnDTeamGame.Services.VehicleServices;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
 namespace DnDTeamGame.WebApi.Controllers;
-
+[Authorize]
 [Route("api/[controller]")]
 [ApiController]
 public class VehicleController : Controller

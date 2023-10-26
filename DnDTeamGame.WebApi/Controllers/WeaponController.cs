@@ -11,7 +11,7 @@ using DnDTeamGame.Models.Responses;
 using DnDTeamGame.Data.Entities;
 
 namespace DnDTeamGame.WebApi.Controllers
-{
+{   
     [Route("api/[controller]")]
     [ApiController]
     public class WeaponController : ControllerBase

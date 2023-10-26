@@ -10,7 +10,7 @@ using DnDTeamGame.Models.ArmourModels;
 using DnDTeamGame.Models.Responses;
 using DnDTeamGame.Data.Entities;
 namespace DnDTeamGame.WebApi.Controllers
-{
+{   [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class ArmourController : ControllerBase

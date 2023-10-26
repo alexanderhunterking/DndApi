@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DnDTeamGame.WebApi.Controllers
-{
+{   [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class GameController : ControllerBase

@@ -12,7 +12,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
 
 namespace DnDTeamGame.WebApi.Controllers
-{
+{   
     [Route("api/[controller]")]
     [ApiController]
     public class UserController : ControllerBase
