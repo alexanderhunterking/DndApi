@@ -22,7 +22,7 @@ using DnDTeamGame.Services.HairStyleServices;
 using DnDTeamGame.Services.BodyTypeServices;
 using DnDTeamGame.Models.MapProfile;
 
-var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
+var  MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -32,14 +32,6 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     {
         options.RequireHttpsMetadata = false;
         options.SaveToken = true;
-        options.TokenValidationParameters = new TokenValidationParameters
-        {
-            ValidateIssuerSigningKey = true,
-            ValidateLifetime = true,
-            ValidateIssuer = true,
-            ValidIssuer = "https://dndwebapi.azurewebsites.net",    //Missing line here
-            ValidateAudience = true
-        };
         options.TokenValidationParameters = new()
         {
             ValidateIssuer = true,
@@ -51,17 +43,10 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             )
         };
     });
-// builder.Services.AddAuthentication(IdentityServerAuthenticationDefaults.AuthenticationScheme)
-//             .AddIdentityServerAuthentication(x =>
-//             {
-//                 x.Authority = "https://dndwebapi.azurewebsites.net"; //idp address
-//                 x.RequireHttpsMetadata = false;
-//                 x.ApiName = "dndwebapi"; //api name
-//             });
 builder.Services.AddCors(options =>
 {
     options.AddPolicy(name: MyAllowSpecificOrigins,
-                      policy =>
+                      policy  =>
                       {
                           policy.WithOrigins("https://dndwebapi.azurewebsites.net", "http://127.0.0.1:5500")
                                .AllowAnyHeader()
@@ -143,8 +128,8 @@ var app = builder.Build();
 
 // Configure the HTTP request pipeline.
 
-app.UseSwagger();
-app.UseSwaggerUI();
+    app.UseSwagger();
+    app.UseSwaggerUI();
 
 app.UseCors(MyAllowSpecificOrigins);
 
